@@ -1,0 +1,19 @@
+{
+  "name": "webproxy",
+  "version": "1.0.0",
+  "description": "A Scramjet-powered web proxy with a tabbed browser UI",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "engines": { "node": ">=18" },
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "@fastify/static": "^9.0.0",
+    "@mercuryworkshop/bare-mux": "^2.1.9",
+    "@mercuryworkshop/libcurl-transport": "^1.5.2",
+    "@mercuryworkshop/scramjet": "https://github.com/MercuryWorkshop/scramjet/releases/download/v1.1.0/mercuryworkshop-scramjet-1.1.0.tgz",
+    "@mercuryworkshop/wisp-js": "^0.4.1",
+    "fastify": "^5.7.4"
+  }
+}

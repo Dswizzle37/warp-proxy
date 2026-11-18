@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Warp</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%237aa2ff'/><path d='M9 16h14M17 10l6 6-6 6' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="/scram/scramjet.all.js"></script>
+  <script src="/baremux/index.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div id="chrome">
+    <div id="tabbar">
+      <div id="tabs"></div>
+      <button id="new-tab" class="icon-btn" title="New tab (Alt+T)">+</button>
+    </div>
+    <div id="navbar">
+      <button id="back" class="icon-btn" title="Back">&#8592;</button>
+      <button id="forward" class="icon-btn" title="Forward">&#8594;</button>
+      <button id="reload" class="icon-btn" title="Reload">&#8635;</button>
+      <button id="home" class="icon-btn" title="Home">&#8962;</button>
+      <form id="omnibox-form">
+        <input id="omnibox" type="text" autocomplete="off" spellcheck="false" placeholder="Search or enter a URL" />
+      </form>
+      <button id="popout" class="icon-btn" title="Open in about:blank tab">&#8599;</button>
+      <button id="settings-btn" class="icon-btn" title="Settings">&#9881;</button>
+    </div>
+  </div>
+
+  <main id="viewport">
+    <section id="home-page">
+      <div class="hero">
+        <div class="logo">
+          <svg viewBox="0 0 32 32" width="56" height="56" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="var(--accent)"/><path d="M9 16h14M17 10l6 6-6 6" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h1>Warp</h1>
+        </div>
+        <p class="tagline">Browse the web through a fast, interception-based proxy.</p>
+        <form id="home-form">
+          <input id="home-input" type="text" autocomplete="off" spellcheck="false" placeholder="Search the web or type a URL" autofocus />
+        </form>
+        <div id="shortcuts"></div>
+        <p id="error" role="alert"></p>
+      </div>
+      <footer>Powered by <a href="https://github.com/MercuryWorkshop/scramjet" target="_blank" rel="noopener">Scramjet</a> · Wisp · libcurl.js</footer>
+    </section>
+  </main>
+
+  <dialog id="settings">
+    <form method="dialog">
+      <h2>Settings</h2>
+      <label>Search engine
+        <select id="engine">
+          <option value="https://duckduckgo.com/?q=%s">DuckDuckGo</option>
+          <option value="https://www.google.com/search?q=%s">Google</option>
+          <option value="https://www.bing.com/search?q=%s">Bing</option>
+          <option value="https://search.brave.com/search?q=%s">Brave</option>
+        </select>
+      </label>
+      <label>Tab cloak title
+        <input id="cloak-title" type="text" placeholder="e.g. Google Docs" />
+      </label>
+      <menu><button value="close">Done</button></menu>
+    </form>
+  </dialog>
+</body>
+</html>
