@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js"
   },
-  "engines": { "node": ">=18" },
+  "engines": { "node": "22.x" },
   "license": "AGPL-3.0-only",
   "dependencies": {
     "@fastify/static": "^9.0.0",
