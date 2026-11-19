@@ -1,0 +1,20 @@
+# Any domain whose DNS points at this server gets a free Let's Encrypt
+# certificate on its first visit. The proxy's /__caddy/ask endpoint only
+# approves domains that really resolve to this server (or match MIRROR_DOMAINS).
+{
+	on_demand_tls {
+		ask http://proxy:8080/__caddy/ask
+	}
+}
+
+https:// {
+	tls {
+		on_demand
+	}
+	encode gzip zstd
+	reverse_proxy proxy:8080
+}
+
+http:// {
+	redir https://{host}{uri} permanent
+}

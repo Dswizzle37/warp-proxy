@@ -19,11 +19,16 @@ npm start          # http://localhost:8080  (PORT env var overrides)
 - **Must be served over HTTPS** (service workers require it, except on localhost). Render/Railway/Fly give you that automatically.
 - The host must allow WebSockets and outbound TCP.
 
+## Free mirrors (one server, unlimited domains)
+See **[MIRRORS.md](MIRRORS.md)**: a free Oracle Cloud server + `docker compose up -d` + free FreeDNS/DuckDNS domains, each with automatic HTTPS.
+
 ## Config (env vars)
 | Var | Default | Purpose |
 |---|---|---|
 | `PORT` | `8080` | Listen port |
 | `DNS_SERVERS` | `1.1.1.3,1.0.0.3` | Resolvers Wisp uses (Cloudflare family filter by default) |
+| `PUBLIC_IP` | auto-detected | Server IP; domains resolving to it get auto-HTTPS (Docker Compose setup) |
+| `MIRROR_DOMAINS` | unset | Comma-separated base domains always allowed a certificate |
 | `WISP_ALLOW_LOCAL` | unset | `1` lets the proxy reach private/loopback IPs. **Testing only.** |
 
 ## Keyboard shortcuts

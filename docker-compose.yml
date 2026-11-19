@@ -1,0 +1,43 @@
+# One server, unlimited mirrors.
+#   docker compose up -d                      -> proxy + Caddy (auto-HTTPS for every domain pointed here)
+#   docker compose --profile tunnel up -d     -> also start a free *.trycloudflare.com mirror
+services:
+  proxy:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      PORT: "8080"
+    expose:
+      - "8080"
+
+  caddy:
+    image: caddy:2.8.4-alpine
+    restart: unless-stopped
+    depends_on:
+      - proxy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+  # Optional: a free HTTPS URL with no domain needed. The URL is random and
+  # changes every time this container restarts. Find it with:
+  #   docker compose logs tunnel | grep trycloudflare.com
+  tunnel:
+    image: cloudflare/cloudflared:2024.12.2
+    profiles: ["tunnel"]
+    restart: unless-stopped
+    depends_on:
+      - proxy
+    command: tunnel --no-autoupdate --url http://proxy:8080
+
+volumes:
+  caddy_data:
+  caddy_config:
