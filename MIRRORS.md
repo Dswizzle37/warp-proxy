@@ -9,6 +9,21 @@ Adding a mirror = adding one DNS record. No config changes, no restarts.
  c.duckdns.org ─┘
 ```
 
+## No server? Instant mirrors from your own computer
+
+Run the proxy on your Mac/PC and get free `https://….trycloudflare.com` links with one command:
+
+```bash
+brew install node cloudflared   # Mac, one time
+./mirrors.sh        # start the proxy if needed + make 1 new link
+./mirrors.sh 5      # make 5 new links
+./mirrors.sh list   # show the links still running
+./mirrors.sh stop   # stop everything
+```
+
+Links last while your computer is on and awake (the script keeps a Mac awake while the proxy runs).
+All traffic exits through **your** home internet connection, so only share links with people you trust.
+
 ## Step 1: Get a free server (Oracle Cloud Always Free)
 
 1. Sign up at https://www.oracle.com/cloud/free/. A card is needed for verification; Always Free resources are not charged.
